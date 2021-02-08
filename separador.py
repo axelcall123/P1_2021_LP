@@ -5,12 +5,11 @@ def separar(palabra):
     str_resto=''
     str_ordenes=''
     str_numero_ordenar=''
-
     for n in range(len(palabra)):#SEPARAR EN ARRAY LAS PALABRAS
         array_cadena.append(palabra[n])
 
     for n in range(len(palabra)):#CONTAR LOS NUMEROS
-        if ord(palabra[n])>47 and ord(palabra[n])<58 or palabra[n]==',':
+        if (ord(palabra[n])>47 and ord(palabra[n])<58 or palabra[n]==',') or palabra[n]=='.':
             contador_palabra+=1
         else:
             n=len(palabra)+1
@@ -23,7 +22,7 @@ def separar(palabra):
             str_resto=str_resto+palabra[n]
 
     for n in range(len(str_resto)):#SEPARAR LOS COMANODS Y LOS NUMEROS
-        if ord(str_resto[n])>64 and ord(str_resto[n])<91 or palabra[n]==',':
+        if (ord(str_resto[n])>64 and ord(str_resto[n])<91) or str_resto[n]==',':
             str_ordenes=str_ordenes+str_resto[n]
         else:
             str_numero_ordenar=str_numero_ordenar+str_resto[n]
