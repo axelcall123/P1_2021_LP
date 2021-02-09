@@ -1,5 +1,11 @@
 import principal as principal
 import os
+array_general=[]
+
+str_id=''
+array_numeros=[]
+array_comandos=[]
+int_numero=0# ID, [#,##,###],[COMANDO1,COMANDO2], int
 
 def menu():
 	
