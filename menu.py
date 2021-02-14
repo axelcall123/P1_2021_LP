@@ -1,7 +1,6 @@
 import principal as principal
 import os
 array_general=[]
-
 str_id=''
 array_numeros=[]
 array_comandos=[]
@@ -22,9 +21,11 @@ while True:
 	menu()
 	opcionMenu = input('INSERTE UNA OPCION >>')
 	if opcionMenu=='1':
-		principal.load()
+		array_test=principal.load()
 	elif opcionMenu=='6':
 		break
+	elif opcionMenu=='7':
+		print('VAMOS A VER EL TEXTO',array_test)
 	else:
 		print ('')
 		input('No has pulsado ninguna opción correcta...\npulsa una tecla para continuar')  

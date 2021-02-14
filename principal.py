@@ -16,8 +16,9 @@ def load():
     for linea in archivo.readlines():#LEE LINEA POR LINEA
         linea=linea+'='#ERROR SI NO TIENE =
         #array_salida.append(analizador.analizarId(linea, contador))
-        analizador.sepId(linea, contador)
-        contador+=1 
+        array_salida.append(analizador.sepId(linea, contador))
+        contador+=1
+    return array_salida  
     #print(array_salida,'ARRAY EN EL PRINCIPAL.PY')
     #return array_salida
     '''
