@@ -1,17 +1,18 @@
 import Separador as Separador
 def sepId(cadena,contador):
     array_respuesta = {}#DIRECTORIO
-    array_modificar=[]
-    array_entrada=[]
-    array_salida=[]
-    array_funciones_comandos=[]
+    
     cadena=cadena.replace(' ','')
     array_id = cadena.split('=')#SEPARA CONVIERTE ARRAY 0|ID;1|RESTO
     array_respuesta[contador] = array_id[0].strip() + '=' + array_id[1].strip()#UNION STR
     #print(array_id[0])
     if array_id[1]=='':#ERROR SI NO LO SEPARA =
         print('ERROR =')
+        return ' '
     else:
+        array_modificar=[]
+        array_entrada=[]
+
         array_modificar.append(array_id[0])#AGREGA EL ID
         array_id[1]=array_id[1].replace('=','')#QUITA EL IGUAL DE LA ULTIMA PARTE PARA EL ERROR lista = 1
         array_id[1]=array_id[1].replace('\n','')#QUITA EL SALTO DE LINEA
@@ -25,11 +26,15 @@ def sepId(cadena,contador):
         array_numeros=separar_numeros(array_modificar[1],contador)
         #tamaño=int(len(array_modificar[0]))+int(len(array_modificar[1]))
         array_comandos=analizar_ordenes(array_modificar[2],contador)
-        NUMERO=numero_inspeccion(array_modificar[3],contador)
+        NUMERO=numero_inspeccion(array_modificar[3],array_modificar[2],contador)
         #print(ID,array_numeros,array_comandos,NUMERO,'--')
         if ID!=' ' and array_numeros!=' ' and array_comandos!=' ' and NUMERO!=' ':
+            array_salida=[]
+            array_funciones_comandos=[]
+            array_funciones_comandos2=[]#EVITA ESTO: ID,COMANDO,LISTA,LISTA1 , ID,COMANDO,LISTA2,LISTA3 
             contador2=1
             array_posiciones=[]
+            
             for n in array_comandos:#CICLO PARA LOS COMANODS BUSCAR | ORDENAR
                 if n=='BUSCAR':#ARRAY_NUMEROS | NUMERO BUSCAR
                     for NUM in array_numeros:#BUSCA TODAS LAS POSICIONES
@@ -47,11 +52,11 @@ def sepId(cadena,contador):
                     array_ordenado=[int(x) for x in array_ordenado]#CONVERTIR EN INTS
                     array_ordenado.sort()#ORDENARLO
                     #array_ordenado.sort(reverse=Tru)#ORDENARLO AL REVES
-                    array_funciones_comandos.append(ID)
-                    array_funciones_comandos.append('O')
-                    array_funciones_comandos.append(array_numeros)
-                    array_funciones_comandos.append(array_ordenado)
-                    array_salida.append(array_funciones_comandos)
+                    array_funciones_comandos2.append(ID)
+                    array_funciones_comandos2.append('O')
+                    array_funciones_comandos2.append(array_numeros)
+                    array_funciones_comandos2.append(array_ordenado)
+                    array_salida.append(array_funciones_comandos2)
                     #print('quieres ordenar')
             #print('COM,SI,FUNC',array_salida)
             return array_salida
@@ -90,9 +95,15 @@ def analizar_ordenes(arrayComandos,contador):
         else:
             print('ERROR EN LAS ORDENES',array_Comandos[n],'COLUMNA:',columna,'FILA:',contador)
             return ' '
-def numero_inspeccion(int,contador):
-    if int=='':
-        return ' ' 
+def numero_inspeccion(int,comandoO,contador):
+    if comandoO=='ORDENAR':#ORDENAR ''
+        if int=='':
+            return '0'#ENVIE ALGO DIFERENTE DE ' ' 
+        else:
+            return int#EL NUMERO
     else:
-        return int
+        if int=='':
+            return ' ' 
+        else:
+            return int
 
