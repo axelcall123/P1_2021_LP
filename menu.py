@@ -40,7 +40,7 @@ while True:
 		if array_test!='':
 			HTML.descomponer(array_test)
 	elif opcionMenu=='6':
-		break;
+		break
 	elif opcionMenu=='7':
 		print('VAMOS A VER EL TEXTO',array_test)
 	else:
